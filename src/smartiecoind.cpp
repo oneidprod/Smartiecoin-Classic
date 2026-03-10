@@ -85,7 +85,7 @@ bool AppInit(int argc, char* argv[])
         else
         {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  smartiecoind [options]                     " + _("Start Smartiecoin Core Daemon") + "\n";
+                  "  smartiecoinclassicd [options]                     " + _("Start Smartiecoin Classic Daemon") + "\n";
 
             strUsage += "\n" + HelpMessage(HMM_BITCOIND);
         }
@@ -137,7 +137,7 @@ bool AppInit(int argc, char* argv[])
 
         if (fCommandLine)
         {
-            fprintf(stderr, "Error: There is no RPC client functionality in smartiecoind anymore. Use the smartiecoin-cli utility instead.\n");
+            fprintf(stderr, "Error: There is no RPC client functionality in smartiecoinclassicd anymore. Use the smartiecoinclassic-cli utility instead.\n");
             exit(EXIT_FAILURE);
         }
 #ifndef WIN32

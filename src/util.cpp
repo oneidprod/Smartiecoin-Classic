@@ -117,8 +117,8 @@ bool fLiteMode = false;
 */
 int nWalletBackups = 10;
 
-const char * const BITCOIN_CONF_FILENAME = "smartiecoin.conf";
-const char * const BITCOIN_PID_FILENAME = "smartiecoind.pid";
+const char * const BITCOIN_CONF_FILENAME = "smartiecoinclassic.conf";
+const char * const BITCOIN_PID_FILENAME = "smartiecoinclassicd.pid";
 
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
@@ -517,13 +517,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\SmartiecoinCore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\SmartiecoinCore
-    // Mac: ~/Library/Application Support/SmartiecoinCore
-    // Unix: ~/.smartiecoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\SmartiecoinClassicCore
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\SmartiecoinClassicCore
+    // Mac: ~/Library/Application Support/SmartiecoinClassicCore
+    // Unix: ~/.smartiecoinclassic
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "SmartiecoinCore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "SmartiecoinClassicCore";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -533,10 +533,10 @@ boost::filesystem::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/SmartiecoinCore";
+    return pathRet / "Library/Application Support/SmartiecoinClassicCore";
 #else
     // Unix
-    return pathRet / ".smartiecoin";
+    return pathRet / ".smartiecoinclassic";
 #endif
 #endif
 }

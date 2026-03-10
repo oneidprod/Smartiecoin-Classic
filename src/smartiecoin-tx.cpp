@@ -52,10 +52,10 @@ static int AppInitRawTx(int argc, char* argv[])
     if (argc<2 || mapArgs.count("-?") || mapArgs.count("-h") || mapArgs.count("-help"))
     {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Smartiecoin Core smartiecoin-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Smartiecoin Classic smartiecoinclassic-tx utility version") + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-              "  smartiecoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded smartiecoin transaction") + "\n" +
-              "  smartiecoin-tx [options] -create [commands]   " + _("Create hex-encoded smartiecoin transaction") + "\n" +
+              "  smartiecoinclassic-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded smartiecoin transaction") + "\n" +
+              "  smartiecoinclassic-tx [options] -create [commands]   " + _("Create hex-encoded smartiecoin transaction") + "\n" +
               "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());

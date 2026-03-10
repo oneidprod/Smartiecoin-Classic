@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both smartiecoind and smartiecoin-qt, to make it harder for attackers to
+ * for both smartiecoinclassicd and smartiecoinclassic-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Smartiecoin Core");
+const std::string CLIENT_NAME("Smartiecoin Classic");
 
 /**
  * Client version number

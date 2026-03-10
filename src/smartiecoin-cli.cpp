@@ -79,9 +79,9 @@ static int AppInitRPC(int argc, char* argv[])
         std::string strUsage = _("Smartiecoin Core RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  smartiecoin-cli [options] <command> [params]  " + _("Send command to Smartiecoin Core") + "\n" +
-                  "  smartiecoin-cli [options] help                " + _("List commands") + "\n" +
-                  "  smartiecoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                  "  smartiecoinclassic-cli [options] <command> [params]  " + _("Send command to Smartiecoin Classic") + "\n" +
+                  "  smartiecoinclassic-cli [options] help                " + _("List commands") + "\n" +
+                  "  smartiecoinclassic-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }

@@ -60,11 +60,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += smartiecoind
+  bin_PROGRAMS += smartiecoinclassicd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += smartiecoin-cli smartiecoin-tx
+  bin_PROGRAMS += smartiecoinclassic-cli smartiecoinclassic-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -208,7 +208,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between smartiecoind and smartiecoin-qt
+# server: shared between smartiecoinclassicd and smartiecoinclassic-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -282,7 +282,7 @@ libbitcoin_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between smartiecoind and smartiecoin-qt, but only linked
+# wallet: shared between smartiecoinclassicd and smartiecoinclassic-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -357,7 +357,7 @@ crypto_libbitcoin_crypto_a_SOURCES += \
   crypto/sph_skein.h \
   crypto/sph_types.h
 
-# common: shared between smartiecoind, and smartiecoin-qt and non-server tools
+# common: shared between smartiecoinclassicd, and smartiecoinclassic-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -417,7 +417,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between smartiecoin-cli and smartiecoin-qt
+# cli: shared between smartiecoinclassic-cli and smartiecoinclassic-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -427,17 +427,17 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind binary #
-smartiecoind_SOURCES = smartiecoind.cpp
-smartiecoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-smartiecoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# smartiecoinclassicd binary #
+smartiecoinclassicd_SOURCES = smartiecoind.cpp
+smartiecoinclassicd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+smartiecoinclassicd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+smartiecoinclassicd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-smartiecoind_SOURCES += smartiecoind-res.rc
+smartiecoinclassicd_SOURCES += smartiecoinclassicd-res.rc
 endif
 
-smartiecoind_LDADD = \
+smartiecoinclassicd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -448,56 +448,56 @@ smartiecoind_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-smartiecoind_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+smartiecoinclassicd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-smartiecoind_LDADD += libbitcoin_wallet.a
+smartiecoinclassicd_LDADD += libbitcoin_wallet.a
 endif
 
-smartiecoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+smartiecoinclassicd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
 
-# smartiecoin-cli binary #
-smartiecoin_cli_SOURCES = smartiecoin-cli.cpp
-smartiecoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-smartiecoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# smartiecoinclassic-cli binary #
+smartiecoinclassic_cli_SOURCES = smartiecoin-cli.cpp
+smartiecoinclassic_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+smartiecoinclassic_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+smartiecoinclassic_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-smartiecoin_cli_SOURCES += smartiecoin-cli-res.rc
+smartiecoinclassic_cli_SOURCES += smartiecoinclassic-cli-res.rc
 endif
 
-smartiecoin_cli_LDADD = \
+smartiecoinclassic_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL)
-smartiecoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+smartiecoinclassic_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# smartiecoin-tx binary #
-smartiecoin_tx_SOURCES = smartiecoin-tx.cpp
-smartiecoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-smartiecoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-smartiecoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# smartiecoinclassic-tx binary #
+smartiecoinclassic_tx_SOURCES = smartiecoin-tx.cpp
+smartiecoinclassic_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+smartiecoinclassic_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+smartiecoinclassic_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-smartiecoin_tx_SOURCES += smartiecoin-tx-res.rc
+smartiecoinclassic_tx_SOURCES += smartiecoinclassic-tx-res.rc
 endif
 
-smartiecoin_tx_LDADD = \
+smartiecoinclassic_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-smartiecoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+smartiecoinclassic_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# smartiecoinconsensus library #
+# smartiecoinclassicconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/smartiecoinconsensus.h
-libsmartiecoinconsensus_la_SOURCES = \
+libsmartiecoinclassicconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -513,13 +513,13 @@ libsmartiecoinconsensus_la_SOURCES = \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libsmartiecoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libsmartiecoinclassicconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libsmartiecoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libsmartiecoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libsmartiecoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libsmartiecoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libsmartiecoinclassicconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libsmartiecoinclassicconsensus_la_LIBADD = $(LIBSECP256K1)
+libsmartiecoinclassicconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libsmartiecoinclassicconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #

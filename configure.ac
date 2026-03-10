@@ -220,7 +220,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build smartiecoin-cli smartiecoin-tx (default=yes)])],
+  [build smartiecoinclassic-cli smartiecoinclassic-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -232,7 +232,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build smartiecoind daemon (default=yes)])],
+  [build smartiecoinclassicd daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -891,11 +891,11 @@ LIBS="$LIBS_TEMP"
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build smartiecoind])
+AC_MSG_CHECKING([whether to build smartiecoinclassicd])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (smartiecoin-cli smartiecoin-tx)])
+AC_MSG_CHECKING([whether to build utils (smartiecoinclassic-cli smartiecoinclassic-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 
@@ -903,7 +903,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_bitcoin_libs = xyes])
 if test x$build_bitcoin_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libsmartiecoinconsensus.pc:libsmartiecoinconsensus.pc.in])
+  AC_CONFIG_FILES([libsmartiecoinclassicconsensus.pc:libsmartiecoinclassicconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_bitcoin_libs)
 
