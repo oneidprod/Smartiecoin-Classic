@@ -302,10 +302,10 @@
 #define PACKAGE_BUGREPORT "https://github.com/vishcoin/smartiecoin/issues"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "Smartiecoin Core"
+#define PACKAGE_NAME "Smartiecoin Classic"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Smartiecoin Core 1.2.0"
+#define PACKAGE_STRING "Smartiecoin Classic 1.2.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "smartiecoin"

@@ -42,7 +42,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "notation for IPv6. This option can be specified multiple times (default: "
 "bind to all interfaces)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
-"Cannot obtain a lock on data directory %s. Smartiecoin Core is probably already "
+"Cannot obtain a lock on data directory %s. Smartiecoin Classic is probably already "
 "running."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Create new files with system default permissions, instead of umask 077 (only "
@@ -51,7 +51,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Delete all wallet transactions and only recover those parts of the "
 "blockchain through -rescan on startup"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
-"Disable all Smartiecoin specific functionality (Masternodes, PrivateSend, "
+"Disable all Smartiecoin Classic specific functionality (Masternodes, PrivateSend, "
 "InstantSend, Governance) (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Discover own IP addresses (default: 1 when listening and no -externalip or -"
@@ -158,7 +158,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Output debugging information (default: %u, supplying <category> is optional)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Please check that your computer's date and time are correct! If your clock "
-"is wrong Smartiecoin Core will not work properly."),
+"is wrong Smartiecoin Classic will not work properly."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "PrivateSend uses exact denominated amounts to send funds, you might simply "
 "need to anonymize some more coins."),
@@ -221,12 +221,12 @@ QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Tries to keep outbound traffic under the given target (in MiB per 24h), 0 = "
 "no limit (default: %d)"),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
-"Unable to bind to %s on this computer. Smartiecoin Core is probably already running."),
+"Unable to bind to %s on this computer. Smartiecoin Classic is probably already running."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Unable to locate enough PrivateSend denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Unable to locate enough PrivateSend non-denominated funds for this "
-"transaction that are not equal 1000 VISH."),
+"transaction that are not equal 1000 SMTC."),
 QT_TRANSLATE_NOOP("smartiecoin-core", ""
 "Unable to locate enough funds for this transaction that are not equal 1000 "
 "VISH."),
@@ -333,7 +333,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Connect to KeePassHttp on port <port> (de
 QT_TRANSLATE_NOOP("smartiecoin-core", "Connect to a node to retrieve peer addresses, and disconnect"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Connection options:"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Copyright (C) 2009-%i The Bitcoin Core Developers"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Copyright (C) 2014-%i The Smartiecoin Core Developers"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Copyright (C) 2014-%i The Smartiecoin Classic Developers"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Corrupted block database detected"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Could not parse masternode.conf"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Debugging/Testing options:"),
@@ -358,7 +358,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading %s: You can't disable HD on
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading wallet.dat"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading wallet.dat: Wallet corrupted"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading wallet.dat: Wallet requires newer version of Smartiecoin Core"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Error loading wallet.dat: Wallet requires newer version of Smartiecoin Classic"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error reading from database, shutting down."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Error"),
@@ -385,7 +385,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Incompatible mode."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Incompatible version."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Incorrect or no genesis block found. Wrong datadir for network?"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Information"),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Initialization sanity check failed. Smartiecoin Core is shutting down."),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Initialization sanity check failed. Smartiecoin Classic is shutting down."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Input is not valid."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "InstantSend options:"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Insufficient funds."),
@@ -537,7 +537,7 @@ QT_TRANSLATE_NOOP("smartiecoin-core", "Verifying wallet..."),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Very low number of keys left: %d"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet %s resides outside data directory %s"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet is locked."),
-QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet needed to be rewritten: restart Smartiecoin Core to complete"),
+QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet needed to be rewritten: restart Smartiecoin Classic to complete"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet options:"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Wallet window title"),
 QT_TRANSLATE_NOOP("smartiecoin-core", "Warning"),

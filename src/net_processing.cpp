@@ -46,7 +46,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Smartiecoin Core cannot be compiled without assertions."
+# error "Smartiecoin Classic cannot be compiled without assertions."
 #endif
 
 int64_t nTimeBestReceived = 0; // Used only to inform the wallet of when we last received a block

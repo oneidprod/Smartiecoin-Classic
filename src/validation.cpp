@@ -57,7 +57,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Smartiecoin Core cannot be compiled without assertions."
+# error "Smartiecoin Classic cannot be compiled without assertions."
 #endif
 
 /**

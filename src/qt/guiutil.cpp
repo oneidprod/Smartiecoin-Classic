@@ -118,7 +118,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Smartiecoin address (e.g. %1)").arg("VSRX8eoxgkvCZ5z7hxBa1CVNkQPwC8pvQD"));
+    widget->setPlaceholderText(QObject::tr("Enter a Smartiecoin Classic address (e.g. %1)").arg("VSRX8eoxgkvCZ5z7hxBa1CVNkQPwC8pvQD"));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -635,15 +635,15 @@ boost::filesystem::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Smartiecoin Core.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Smartiecoin Classic.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Smartiecoin Core (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Smartiecoin Core (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Smartiecoin Classic (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Smartiecoin Classic (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for "Smartiecoin Core*.lnk"
+    // check for "Smartiecoin Classic*.lnk"
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -779,9 +779,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Smartiecoin Core\n";
+            optionFile << "Name=Smartiecoin Classic\n";
         else
-            optionFile << strprintf("Name=Smartiecoin Core (%s)\n", chain);
+            optionFile << strprintf("Name=Smartiecoin Classic (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", GetBoolArg("-testnet", false), GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -800,7 +800,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl);
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
-    // loop through the list of startup items and try to find the Smartiecoin Core app
+    // loop through the list of startup items and try to find the Smartiecoin Classic app
     CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
@@ -845,7 +845,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add Smartiecoin Core app to startup item list
+        // add Smartiecoin Classic app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, bitcoinAppUrl, NULL, NULL);
     }
     else if(!fAutoStart && foundItem) {
