@@ -63,9 +63,10 @@ WalletModel::WalletModel(const PlatformStyle *platformStyle, CWallet *wallet, Op
     recentRequestsTableModel = new RecentRequestsTableModel(wallet, this);
 
     // This timer will be fired repeatedly to update the balance
+    // Use 2x the base delay (500ms) -- 250ms is unnecessarily frequent, 1000ms feels slow for miners
     pollTimer = new QTimer(this);
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(pollBalanceChanged()));
-    pollTimer->start(MODEL_UPDATE_DELAY);
+    pollTimer->start(MODEL_UPDATE_DELAY * 2);
 
     subscribeToCoreSignals();
 }

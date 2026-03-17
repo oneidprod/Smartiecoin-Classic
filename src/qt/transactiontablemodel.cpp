@@ -100,7 +100,7 @@ public:
      */
     void updateWallet(const uint256 &hash, int status, bool showTransaction)
     {
-        qDebug() << "TransactionTablePriv::updateWallet: " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
+        // qDebug() << "TransactionTablePriv::updateWallet: " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
 
         // Find bounds of this transaction in model
         QList<TransactionRecord>::iterator lower = qLowerBound(
@@ -119,9 +119,9 @@ public:
                 status = CT_DELETED; /* In model, but want to hide, treat as deleted */
         }
 
-        qDebug() << "    inModel=" + QString::number(inModel) +
-                    " Index=" + QString::number(lowerIndex) + "-" + QString::number(upperIndex) +
-                    " showTransaction=" + QString::number(showTransaction) + " derivedStatus=" + QString::number(status);
+        // qDebug() << "    inModel=" + QString::number(inModel) +
+        //             " Index=" + QString::number(lowerIndex) + "-" + QString::number(upperIndex) +
+        //             " showTransaction=" + QString::number(showTransaction) + " derivedStatus=" + QString::number(status);
 
         switch(status)
         {
@@ -278,11 +278,18 @@ void TransactionTableModel::updateTransaction(const QString &hash, int status, b
 void TransactionTableModel::updateConfirmations()
 {
     // Blocks came in since last poll.
-    // Invalidate status (number of confirmations) and (possibly) description
-    //  for all rows. Qt is smart enough to only actually request the data for the
-    //  visible rows.
-    Q_EMIT dataChanged(index(0, Status), index(priv->size()-1, Status));
-    Q_EMIT dataChanged(index(0, ToAddress), index(priv->size()-1, ToAddress));
+    // NOTE: The proxy model uses setDynamicSortFilter(true), so emitting dataChanged
+    // for the full row range triggers filterAcceptsRow() + lessThan() for every row,
+    // which acquires wallet locks N times -- O(N) per block, catastrophic for large wallets.
+    // Status is lazily updated in index() when rows are actually rendered, so we only
+    // need to notify a small window to trigger repaints of visible rows.
+    // Unconfirmed/low-confirmation txs sort to the top, so the first ~50 rows by hash
+    // covers the practically relevant ones; deep-confirmed txs don't change visually.
+    int nRows = priv->size();
+    if (nRows == 0) return;
+    static const int MAX_NOTIFY_ROWS = 50;
+    int nNotify = std::min(nRows, MAX_NOTIFY_ROWS);
+    Q_EMIT dataChanged(index(0, Status), index(nNotify - 1, Status));
 }
 
 int TransactionTableModel::rowCount(const QModelIndex &parent) const
@@ -747,7 +754,7 @@ public:
     void invoke(QObject *ttm)
     {
         QString strHash = QString::fromStdString(hash.GetHex());
-        qDebug() << "NotifyTransactionChanged: " + strHash + " status= " + QString::number(status);
+        // qDebug() << "NotifyTransactionChanged: " + strHash + " status= " + QString::number(status);
         QMetaObject::invokeMethod(ttm, "updateTransaction", Qt::QueuedConnection,
                                   Q_ARG(QString, strHash),
                                   Q_ARG(int, status),
