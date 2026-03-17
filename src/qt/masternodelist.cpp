@@ -298,7 +298,7 @@ void MasternodeList::updateNodeList()
             if (!strToFilter.contains(strCurrentFilter)) continue;
         }
 
-        ui->tableWidgetMasternodes->insertRow(0);
+        ui->tableWidgetMasternodes->insertRow(ui->tableWidgetMasternodes->rowCount());
         ui->tableWidgetMasternodes->setItem(0, 0, addressItem);
         ui->tableWidgetMasternodes->setItem(0, 1, protocolItem);
         ui->tableWidgetMasternodes->setItem(0, 2, statusItem);

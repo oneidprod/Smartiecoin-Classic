@@ -53,12 +53,13 @@ ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
     banTableModel = new BanTableModel(this);
     pollTimer = new QTimer(this);
     connect(pollTimer, SIGNAL(timeout()), this, SLOT(updateTimer()));
-    pollTimer->start(MODEL_UPDATE_DELAY);
+    // 1000ms is sufficient for mempool/traffic graph -- 250ms caused constant repaints
+    pollTimer->start(MODEL_UPDATE_DELAY * 4);
 
     pollMnTimer = new QTimer(this);
     connect(pollMnTimer, SIGNAL(timeout()), this, SLOT(updateMnTimer()));
-    // no need to update as frequent as data for balances/txes/blocks
-    pollMnTimer->start(MODEL_UPDATE_DELAY * 4);
+    // 5000ms for MN count string -- CountEnabled() is O(N) over masternode map
+    pollMnTimer->start(MODEL_UPDATE_DELAY * 20);
 
     subscribeToCoreSignals();
 }

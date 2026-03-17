@@ -459,7 +459,7 @@ void OverviewPage::privateSendStatus()
     if(!masternodeSync.IsBlockchainSynced() || ShutdownRequested()) return;
 
     static int64_t nLastDSProgressBlockTime = 0;
-    int nBestHeight = clientModel->getNumBlocks();
+    int nBestHeight = clientModel->getHeaderTipHeight(); // cached -- avoids LOCK(cs_main) every second
 
     // We are processing more then 1 block per second, we'll just leave
     if(((nBestHeight - privateSendClient.nCachedNumBlocks) / (GetTimeMillis() - nLastDSProgressBlockTime + 1) > 1)) return;
